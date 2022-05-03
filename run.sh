@@ -1,8 +1,5 @@
 #!/bin/sh
 
-podman pod create \
-    --name ipfs
-
 case "$1" in
     'nginx')
         podman run -d \
