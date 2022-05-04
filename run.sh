@@ -10,6 +10,7 @@ case "$1" in
             server
     ;;
     'ipfs')
+        podman stop ipfs && podman rm ipfs
         podman run -d \
             --restart always \
             --name ipfs \
