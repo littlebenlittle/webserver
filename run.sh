@@ -5,6 +5,7 @@ case "$1" in
         podman run -d \
             --restart=always \
             --name nginx \
+            -v ./benlittledev.com:/www/data:ro \
             -p 80:80 \
             server
     ;;
