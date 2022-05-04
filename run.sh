@@ -2,10 +2,10 @@
 
 case "$1" in
     'nginx')
+        podman stop nginx && podman rm nginx
         podman run -d \
             --restart=always \
             --name nginx \
-            -v ./benlittledev.com:/www/data:ro \
             -p 80:80 \
             server
     ;;
