@@ -15,7 +15,7 @@ case "$1" in
             --restart always \
             --name ipfs \
             -v ipfs-data:/data/ipfs \
-            -v /staging:/staging \
+            -v /staging:/staging:ro \
             -p 4001:4001 \
             -p 127.0.0.1:5001:5001 \
             -p 127.0.0.1:8080:8080 \
