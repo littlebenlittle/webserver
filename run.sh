@@ -7,7 +7,7 @@ case "$1" in
             --restart=always \
             --name nginx \
             -p 80:80 \
-            server
+            nginx
     ;;
     'ipfs')
         podman stop ipfs && podman rm ipfs
