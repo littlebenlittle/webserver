@@ -1,5 +1,3 @@
-FROM docker.io/ipfs/go-ipfs
+FROM docker.io/ipfs/kubo
 
-COPY docker-entrypoint.sh /docker-entrypoint.sh
-
-ENTRYPOINT ["/docker-entrypoint.sh"]
+COPY setup.sh /container-init.d/

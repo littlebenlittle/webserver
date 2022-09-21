@@ -14,6 +14,8 @@ case "$1" in
             --pod web \
             --restart=always \
             --name nginx \
+            --cpus='0.10' \
+            --memory='10m' \
             nginx
     ;;
     'ipfs')
@@ -23,7 +25,8 @@ case "$1" in
             --restart always \
             --name ipfs \
             -v ipfs-data:/data/ipfs \
-            -v /staging:/staging:ro \
+            --cpus='0.25' \
+            --memory='490m' \
             ipfs
     ;;
 esac
