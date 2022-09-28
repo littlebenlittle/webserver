@@ -1,0 +1,1 @@
+* * * * *       podman run -ti --rm --name=monitor -v persist:/tmp --secret=linode-access-token -e "SERVICE_LINODE_ID=39017268" localhost/monitor >>/home/user/cron.log
