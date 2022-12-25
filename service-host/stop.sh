@@ -1,13 +1,15 @@
 #!/bin/sh
 
+set -e
+
 case "$1" in
     'nginx')
-        cd ./nginx || exit 1
-        /usr/bin/podman build -t nginx .
+        podman stop nginx
+        podman rm nginx
     ;;
     'ipfs')
-        cd ./ipfs || exit 1
-        /usr/bin/podman build -t ipfs .
+        podman stop ipfs
+        podman rm ipfs
     ;;
     *)
         echo "use:"
@@ -16,3 +18,4 @@ case "$1" in
         echo "$0 ipfs"
     ;;
 esac
+

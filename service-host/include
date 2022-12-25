@@ -1,6 +1,6 @@
 ipfs
 nginx
+add-services.sh
 build.sh
 start.sh
-exit.sh
-add-services.sh
+stop.sh

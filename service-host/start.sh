@@ -2,28 +2,51 @@
 
 set -e
 
-podman pod create \
-    --name web \
-    -p 80:80 \
-    -p 4001:4001 \
-    -p 127.0.0.1:5001:5001 \
-    -p 127.0.0.1:8080:8080
-
-podman run -d \
-    --pod=web \
-    --restart=always \
-    --name=nginx \
+run_nginx() {
+if [ "$(id -u)" -eq "0" ]; then
+    echo 'running as root'
+    NGINX_PORT=80
+else
+    echo 'running as non-root user'
+    NGINX_PORT=8090
+fi
+/usr/bin/podman run -d \
+    --restart always \
+    --name nginx \
+    --publish "$NGINX_PORT":80 \
+    --volume www-data:/www-data:ro \
     --cpus='0.10' \
     --memory='10m' \
     --log-opt='max-size=10m' \
     localhost/nginx
+}
 
-podman run -d \
-    --pod web \
+run_ipfs() {
+/usr/bin/podman run -d \
     --restart always \
     --name ipfs \
-    -v ipfs-data:/data/ipfs \
+    --publish 4001:4001 \
+    --publish 127.0.0.1:5001:5001 \
+    --publish 127.0.0.1:8080:8080 \
+    --volume ipfs-data:/data/ipfs \
+    --volume www-data:/www-data \
     --cpus='0.25' \
     --memory='490m' \
     --log-opt='max-size=10m' \
     localhost/ipfs
+}
+
+case "$1" in
+    'nginx')
+        run_nginx
+    ;;
+    'ipfs')
+        run_ipfs
+    ;;
+    *)
+        echo "use:"
+        echo "$0 nginx"
+        echo "OR"
+        echo "$0 ipfs"
+    ;;
+esac
