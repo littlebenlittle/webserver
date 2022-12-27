@@ -18,6 +18,7 @@ fi
     --cpus='0.10' \
     --memory='10m' \
     --log-opt='max-size=10m' \
+    --network=slirp4netns \
     localhost/nginx
 }
 
@@ -33,6 +34,7 @@ run_ipfs() {
     --cpus='0.25' \
     --memory='490m' \
     --log-opt='max-size=10m' \
+    --network=slirp4netns \
     localhost/ipfs
 }
 

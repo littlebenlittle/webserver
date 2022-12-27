@@ -11,6 +11,7 @@ then
     mkdir /tmp/www-data-restore
     mv /www-data/* /tmp/www-data-restore
     mv /tmp/www-data-old/* /www-data
+    chmod -R +r /www-data/*
 else
     echo "/tmp/www-data-old does not exist"
 fi

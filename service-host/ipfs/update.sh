@@ -14,4 +14,5 @@ then
         mv /www-data/* /tmp/www-data-old
     fi
     mv /tmp/www-data/* /www-data
+    chmod -R +r /www-data/*
 fi

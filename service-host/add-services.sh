@@ -4,8 +4,8 @@ set -e
 
 cd /etc/systemd/system/
 
-podman generate systemd --files --name web
+podman generate systemd --files --name nginx
+podman generate systemd --files --name ipfs
 
-systemctl enable pod-web.service
 systemctl enable container-nginx.service
 systemctl enable container-ipfs.service
